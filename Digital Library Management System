@@ -1,1 +1,1651 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+
+public class AdminLogin extends JFrame {
+	static AdminLogin frame;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new AdminLogin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public AdminLogin() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblAdminLoginForm = new JLabel("Admin Login Form");
+		lblAdminLoginForm.setForeground(Color.GRAY);
+		lblAdminLoginForm.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblEnterName = new JLabel("Enter Name:");
+		
+		JLabel lblEnterPassword = new JLabel("Enter Password:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			String name=textField.getText();
+			String password=String.valueOf(passwordField.getPassword());
+			if(name.equals("admin")&&password.equals("admin123")){
+				AdminSuccess.main(new String[]{});
+				frame.dispose();
+			}else{
+				JOptionPane.showMessageDialog(AdminLogin.this, "Sorry, Username or Password Error","Login Error!", JOptionPane.ERROR_MESSAGE);
+				textField.setText("");
+				passwordField.setText("");
+			}
+			}
+		});
+		
+		passwordField = new JPasswordField();
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(124)
+							.addComponent(lblAdminLoginForm))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(19)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblEnterName)
+								.addComponent(lblEnterPassword))
+							.addGap(47)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(passwordField)
+								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
+					.addContainerGap(107, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(187, Short.MAX_VALUE)
+					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+					.addGap(151))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblAdminLoginForm)
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEnterName)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEnterPassword)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(80, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
+
+public class AdminSuccess extends JFrame {
+	static AdminSuccess frame;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new AdminSuccess();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public AdminSuccess() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 371);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblAdminSection = new JLabel("Admin Section");
+		lblAdminSection.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblAdminSection.setForeground(Color.GRAY);
+		
+		JButton btnNewButton = new JButton("Add Librarian");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			LibrarianForm.main(new String[]{});
+			frame.dispose();
+			}
+		});
+		
+		JButton btnViewLibrarian = new JButton("View Librarian");
+		btnViewLibrarian.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			ViewLibrarian.main(new String[]{});
+			}
+		});
+		btnViewLibrarian.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JButton btnDeleteLibrarian = new JButton("Delete Librarian");
+		btnDeleteLibrarian.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			DeleteLibrarian.main(new String[]{});
+			frame.dispose();
+			}
+		});
+		btnDeleteLibrarian.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Library.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(150, Short.MAX_VALUE)
+					.addComponent(lblAdminSection, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addGap(123))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(134)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnDeleteLibrarian, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnViewLibrarian, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(109, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblAdminSection, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnViewLibrarian, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnDeleteLibrarian, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class BookDao {
+public static int save(String callno,String name,String author,String publisher,int quantity){
+	int status=0;
+	try{
+		Connection con=DB.getConnection();
+		PreparedStatement ps=con.prepareStatement("insert into books(callno,name,author,publisher,quantity) values(?,?,?,?,?)");
+		ps.setString(1,callno);
+		ps.setString(2,name);
+		ps.setString(3,author);
+		ps.setString(4,publisher);
+		ps.setInt(5,quantity);
+		status=ps.executeUpdate();
+		con.close();
+	}catch(Exception e){System.out.println(e);}
+	return status;
+}
+}
+public class BooksForm extends JFrame {
+	static BooksForm frame;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new BooksForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+
+public BooksForm() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 404);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblAddBooks = new JLabel("Add Books");
+		lblAddBooks.setForeground(Color.GRAY);
+		lblAddBooks.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblCallNo = new JLabel("Call No:");
+		
+		JLabel lblName = new JLabel("Name:");
+		
+		JLabel lblAuthor = new JLabel("Author:");
+		
+		JLabel lblPublisher = new JLabel("Publisher:");
+		
+		JLabel lblQuantity = new JLabel("Quantity:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		
+		JButton btnAddBooks = new JButton("Add Books");
+		btnAddBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			String callno=textField.getText();
+			String name=textField_1.getText();
+			String author=textField_2.getText();
+			String publisher=textField_3.getText();
+			String squantity=textField_4.getText();
+			int quantity=Integer.parseInt(squantity);
+			int i=BookDao.save(callno, name, author, publisher, quantity);
+			if(i>0){
+				JOptionPane.showMessageDialog(BooksForm.this,"Books added successfully!");
+				LibrarianSuccess.main(new String[]{});
+				frame.dispose();
+				
+			}else{
+				JOptionPane.showMessageDialog(BooksForm.this,"Sorry, unable to save!");
+			}
+			}
+		});
+		
+		JButton btnBack = new JButton("Back");
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(150)
+							.addComponent(lblAddBooks))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblCallNo)
+								.addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblPublisher, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+								.addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+							.addGap(47)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(125, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(161)
+					.addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(162, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(359, Short.MAX_VALUE)
+					.addComponent(btnBack)
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblAddBooks)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCallNo)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblName)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblAuthor)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPublisher)
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblQuantity)
+						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(30)
+					.addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnBack)
+					.addContainerGap(53, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+}
+}
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DB {
+	public static Connection getConnection(){
+		Connection con=null;
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","","");
+		}catch(Exception e){System.out.println(e);}
+		return con;
+	}
+
+}
+public class DeleteLibrarian extends JFrame {
+	static DeleteLibrarian frame;
+	private JPanel contentPane;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new DeleteLibrarian();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public DeleteLibrarian() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblEnterId = new JLabel("Enter Id:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sid=textField.getText();
+				if(sid==null||sid.trim().equals("")){
+					JOptionPane.showMessageDialog(DeleteLibrarian.this,"Id can't be blank");
+				}else{
+					int id=Integer.parseInt(sid);
+					int i=LibrarianDao.delete(id);
+					if(i>0){
+						JOptionPane.showMessageDialog(DeleteLibrarian.this,"Record deleted successfully!");
+					}else{
+						JOptionPane.showMessageDialog(DeleteLibrarian.this,"Unable to delete given id!");
+					}
+				}
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSuccess.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(39)
+					.addComponent(lblEnterId)
+					.addGap(57)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(107, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(175, Short.MAX_VALUE)
+					.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addGap(140))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(322, Short.MAX_VALUE)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(19)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEnterId))
+					.addGap(33)
+					.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(43)
+					.addComponent(btnNewButton)
+					.addContainerGap(78, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
+import java.sql.*;
+public class IssueBookDao {
+	
+public static boolean checkBook(String bookcallno){
+	boolean status=false;
+	try{
+		Connection con=DB.getConnection();
+		PreparedStatement ps=con.prepareStatement("select * from books where callno=?");
+		ps.setString(1,bookcallno);
+	    ResultSet rs=ps.executeQuery();
+		status=rs.next();
+		con.close();
+	}catch(Exception e){System.out.println(e);}
+	return status;
+}
+
+public static int save(String bookcallno,int studentid,String studentname,String studentcontact){
+	int status=0;
+	try{
+		Connection con=DB.getConnection();
+		
+		status=updatebook(bookcallno);//updating quantity and issue
+		
+		if(status>0){
+		PreparedStatement ps=con.prepareStatement("insert into issuebooks(bookcallno,studentid,studentname,studentcontact) values(?,?,?,?)");
+		ps.setString(1,bookcallno);
+		ps.setInt(2,studentid);
+		ps.setString(3,studentname);
+		ps.setString(4,studentcontact);
+		status=ps.executeUpdate();
+		}
+		
+		con.close();
+	}catch(Exception e){System.out.println(e);}
+	return status;
+}
+public static int updatebook(String bookcallno){
+	int status=0;
+	int quantity=0,issued=0;
+	try{
+		Connection con=DB.getConnection();
+		
+		PreparedStatement ps=con.prepareStatement("select quantity,issued from books where callno=?");
+		ps.setString(1,bookcallno);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()){
+			quantity=rs.getInt("quantity");
+			issued=rs.getInt("issued");
+		}
+		
+		if(quantity>0){
+		PreparedStatement ps2=con.prepareStatement("update books set quantity=?,issued=? where callno=?");
+		ps2.setInt(1,quantity-1);
+		ps2.setInt(2,issued+1);
+		ps2.setString(3,bookcallno);
+		
+		status=ps2.executeUpdate();
+		}
+		con.close();
+	}catch(Exception e){System.out.println(e);}
+	return status;
+}
+}
+public class IssueBookForm extends JFrame {
+	static IssueBookForm frame;
+	private JPanel contentPane;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new IssueBookForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public IssueBookForm() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 438, 414);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblNewLabel = new JLabel("Issue Book ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setForeground(Color.GRAY);
+		
+		JLabel lblBookName = new JLabel("Book Callno:");
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		
+		JLabel lblStudentId = new JLabel("Student Id:");
+		
+		JLabel lblStudentName = new JLabel("Student Name:");
+		
+		JLabel lblStudentContact = new JLabel("Student Contact:");
+		
+		JButton btnIssueBook = new JButton("Issue Book");
+		btnIssueBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			String bookcallno=textField_1.getText();
+			int studentid=Integer.parseInt(textField_2.getText());
+			String studentname=textField_3.getText();
+			String studentcontact=textField_4.getText();
+			
+			if(IssueBookDao.checkBook(bookcallno)){
+			
+			int i=IssueBookDao.save(bookcallno, studentid, studentname, studentcontact);
+			if(i>0){
+				JOptionPane.showMessageDialog(IssueBookForm.this,"Book issued successfully!");
+				LibrarianSuccess.main(new String[]{});
+				frame.dispose();
+				
+			}else{
+				JOptionPane.showMessageDialog(IssueBookForm.this,"Sorry, unable to issue!");
+			}//end of save if-else
+			
+			}else{
+				JOptionPane.showMessageDialog(IssueBookForm.this,"Sorry, Callno doesn't exist!");
+			}//end of checkbook if-else
+			
+			}
+		});
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LibrarianSuccess.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		
+		JLabel lblNewLabel_1 = new JLabel("Note: Please check Student ID Carefully before issuing book!");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1.setForeground(Color.RED);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(10, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblBookName)
+								.addComponent(lblStudentId)
+								.addComponent(lblStudentName, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblStudentContact, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+							.addGap(10)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
+							.addGap(48))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(20)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblNewLabel_1)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+									.addGap(47)
+									.addComponent(btnBack)))
+							.addGap(100))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(146)
+					.addComponent(lblNewLabel)
+					.addContainerGap(235, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(37)
+					.addComponent(lblNewLabel)
+					.addGap(43)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBookName)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStudentId)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStudentName)
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStudentContact)
+						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBack))
+					.addGap(18)
+					.addComponent(lblNewLabel_1)
+					.addGap(25))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
+import java.sql.*;
+public class LibrarianDao {
+
+	
+	public static int save(String name,String password,String email,String address,String city,String contact){
+		int status=0;
+		try{
+			Connection con=DB.getConnection();
+			PreparedStatement ps=con.prepareStatement("insert into librarian(name,password,email,address,city,contact) values(?,?,?,?,?,?)");
+			ps.setString(1,name);
+			ps.setString(2,password);
+			ps.setString(3,email);
+			ps.setString(4,address);
+			ps.setString(5,city);
+			ps.setString(6,contact);
+			status=ps.executeUpdate();
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+	public static int delete(int id){
+		int status=0;
+		try{
+			Connection con=DB.getConnection();
+			PreparedStatement ps=con.prepareStatement("delete from librarian where id=?");
+			ps.setInt(1,id);
+			status=ps.executeUpdate();
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+
+	public static boolean validate(String name,String password){
+		boolean status=false;
+		try{
+			Connection con=DB.getConnection();
+			PreparedStatement ps=con.prepareStatement("select * from librarian where name=? and password=?");
+			ps.setString(1,name);
+			ps.setString(2,password);
+			ResultSet rs=ps.executeQuery();
+			status=rs.next();
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+
+}
+public class LibrarianForm extends JFrame {
+	static LibrarianForm frame;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new LibrarianForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+/**
+	 * Create the frame.
+	 */
+	public LibrarianForm() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 450);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblAddLibrarian = new JLabel("Add Librarian");
+		lblAddLibrarian.setForeground(Color.DARK_GRAY);
+		lblAddLibrarian.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		
+		JLabel lblName = new JLabel("Name:");
+		
+		JLabel lblPassword = new JLabel("Password:");
+		
+		JLabel lblEmail = new JLabel("Email:");
+		
+		JLabel lblAddress = new JLabel("Address:");
+		
+		JLabel lblCity = new JLabel("City:");
+		
+		JLabel lblContactNo = new JLabel("Contact No:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		
+		JButton btnNewButton = new JButton("Add Librarian");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			String name=textField.getText();
+			String password=String.valueOf(passwordField.getPassword());
+			String email=textField_1.getText();
+			String address=textField_2.getText();
+			String city=textField_3.getText();
+			String contact=textField_4.getText();
+
+			int i=LibrarianDao.save(name, password, email, address, city, contact);
+			if(i>0){
+				JOptionPane.showMessageDialog(LibrarianForm.this,"Librarian added successfully!");
+				AdminSuccess.main(new String[]{});
+				frame.dispose();
+				
+			}else{
+				JOptionPane.showMessageDialog(LibrarianForm.this,"Sorry, unable to save!");
+			}
+			}
+		});
+		btnNewButton.setForeground(Color.DARK_GRAY);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			AdminSuccess.main(new String[]{});
+			frame.dispose();
+			}
+		});
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(20)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+						.addComponent(lblName)
+						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblContactNo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(58)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(passwordField))
+					.addContainerGap(107, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(151, Short.MAX_VALUE)
+					.addComponent(lblAddLibrarian)
+					.addGap(144))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(160, Short.MAX_VALUE)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addGap(133))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(200, Short.MAX_VALUE)
+					.addComponent(btnBack)
+					.addGap(169))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblAddLibrarian)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblName)
+							.addGap(18)
+							.addComponent(lblPassword))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEmail)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblAddress)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCity)
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblContactNo)
+						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+					.addComponent(btnBack)
+					.addGap(19))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+}
+public class LibrarianLogin extends JFrame {
+	static LibrarianLogin frame;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new LibrarianLogin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LibrarianLogin() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblAdminLoginForm = new JLabel("Librarian Login Form");
+		lblAdminLoginForm.setForeground(Color.GRAY);
+		lblAdminLoginForm.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblEnterName = new JLabel("Enter Name:");
+		
+		JLabel lblEnterPassword = new JLabel("Enter Password:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			String name=textField.getText();
+			String password=String.valueOf(passwordField.getPassword());
+			//System.out.println(name+" "+password);
+			if(LibrarianDao.validate(name, password)){
+				LibrarianSuccess.main(new String[]{});
+				frame.dispose();
+			}else{
+				JOptionPane.showMessageDialog(LibrarianLogin.this, "Sorry, Username or Password Error","Login Error!", JOptionPane.ERROR_MESSAGE);
+				textField.setText("");
+				passwordField.setText("");
+			}
+			}
+		});
+		
+		passwordField = new JPasswordField();
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(124)
+							.addComponent(lblAdminLoginForm))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(19)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblEnterName)
+								.addComponent(lblEnterPassword))
+							.addGap(47)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(passwordField)
+								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
+					.addContainerGap(107, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(187, Short.MAX_VALUE)
+					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+					.addGap(151))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblAdminLoginForm)
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEnterName)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEnterPassword)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(80, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
+
+public class LibrarianSuccess extends JFrame {
+	static LibrarianSuccess frame;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new LibrarianSuccess();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LibrarianSuccess() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 433);
+		contentPane = new JPanel();
+		contentPane.setForeground(Color.GRAY);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblLibrarianSection = new JLabel("Librarian Section - JavaTpoint");
+		lblLibrarianSection.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		
+		JButton btnNewButton = new JButton("Add Books");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			BooksForm.main(new String[]{});
+			frame.dispose();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnViewBooks = new JButton("View Books");
+		btnViewBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ViewBooks.main(new String[]{});
+			}
+		});
+		btnViewBooks.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnIssueBook = new JButton("Issue Book");
+		btnIssueBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IssueBookForm.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		btnIssueBook.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnViewIssuedBooks = new JButton("View Issued Books");
+		btnViewIssuedBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewIssuedBooks.main(new String[]{});
+			}
+		});
+		btnViewIssuedBooks.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnReturnBook = new JButton("Return Book");
+		btnReturnBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ReturnBook.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		btnReturnBook.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Library.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(81, Short.MAX_VALUE)
+					.addComponent(lblLibrarianSection)
+					.addGap(54))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(132)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnViewIssuedBooks, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(101, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblLibrarianSection)
+					.addGap(18)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnViewIssuedBooks, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(16, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+}
+public class Library extends JFrame {
+	static Library frame;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame= new Library();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Library() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblLibraryManagement = new JLabel("Library Management - JavaTpoint");
+		lblLibraryManagement.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblLibraryManagement.setForeground(Color.GRAY);
+		
+		JButton btnAdminLogin = new JButton("Admin Login");
+		btnAdminLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			AdminLogin.main(new String[]{});
+			frame.dispose();
+			}
+		});
+		btnAdminLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JButton btnLibrarianLogin = new JButton("Librarian Login");
+		btnLibrarianLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LibrarianLogin.main(new String[]{});
+			}
+		});
+		btnLibrarianLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(64)
+							.addComponent(lblLibraryManagement))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(140)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(btnLibrarianLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))))
+					.addContainerGap(95, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblLibraryManagement)
+					.addGap(32)
+					.addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnLibrarianLogin, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(70, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
+
+public class ReturnBook extends JFrame {
+	static ReturnBook frame;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new ReturnBook();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ReturnBook() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 516, 413);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblReturnBook = new JLabel("Return Book");
+		lblReturnBook.setForeground(Color.GRAY);
+		lblReturnBook.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblBookCallno = new JLabel("Book Callno:");
+		
+		JLabel lblStudentId = new JLabel("Student Id:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		JButton btnReturnBook = new JButton("Return Book");
+		btnReturnBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String bookcallno=textField.getText();
+				int studentid=Integer.parseInt(textField_1.getText());
+				int i=ReturnBookDao.delete(bookcallno, studentid);
+				if(i>0){
+					JOptionPane.showMessageDialog(ReturnBook.this,"Book returned successfully!");
+					LibrarianSuccess.main(new String[]{});
+					frame.dispose();
+					
+				}else{
+					JOptionPane.showMessageDialog(ReturnBook.this,"Sorry, unable to return book!");
+				}
+			}
+		});
+		
+		JLabel lblNewLabel = new JLabel("Note: Check the book properly!");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LibrarianSuccess.main(new String[]{});
+				frame.dispose();
+			}
+		});
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(36)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(lblStudentId, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblBookCallno, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+					.addGap(56)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(139, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(210, Short.MAX_VALUE)
+					.addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+					.addGap(176))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(205, Short.MAX_VALUE)
+					.addComponent(lblReturnBook)
+					.addGap(187))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(19)
+					.addComponent(lblNewLabel)
+					.addContainerGap(294, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(355, Short.MAX_VALUE)
+					.addComponent(btnBack)
+					.addGap(46))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblReturnBook)
+					.addGap(32)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBookCallno)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(34)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStudentId)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
+					.addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(23)
+					.addComponent(btnBack)
+					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addComponent(lblNewLabel)
+					.addGap(72))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+}
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ReturnBookDao {
+	public static int delete(String bookcallno,int studentid){
+		int status=0;
+		try{
+			Connection con=DB.getConnection();
+			
+			status=updatebook(bookcallno);//updating quantity and issue
+			
+			if(status>0){
+			PreparedStatement ps=con.prepareStatement("delete from issuebooks where bookcallno=? and studentid=?");
+			ps.setString(1,bookcallno);
+			ps.setInt(2,studentid);
+			status=ps.executeUpdate();
+			}
+			
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+	public static int updatebook(String bookcallno){
+		int status=0;
+		int quantity=0,issued=0;
+		try{
+			Connection con=DB.getConnection();
+			
+			PreparedStatement ps=con.prepareStatement("select quantity,issued from books where callno=?");
+			ps.setString(1,bookcallno);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				quantity=rs.getInt("quantity");
+				issued=rs.getInt("issued");
+			}
+			
+			if(issued>0){
+			PreparedStatement ps2=con.prepareStatement("update books set quantity=?,issued=? where callno=?");
+			ps2.setInt(1,quantity+1);
+			ps2.setInt(2,issued-1);
+			ps2.setString(3,bookcallno);
+			
+			status=ps2.executeUpdate();
+			}
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+}
+
+public class ViewBooks extends JFrame {
+
+	private JPanel contentPane;
+	private JTable table;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ViewBooks frame = new ViewBooks();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ViewBooks() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		String data[][]=null;
+		String column[]=null;
+		try{
+			Connection con=DB.getConnection();
+			PreparedStatement ps=con.prepareStatement("select * from books",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs=ps.executeQuery();
+			
+			ResultSetMetaData rsmd=rs.getMetaData();
+			int cols=rsmd.getColumnCount();
+			column=new String[cols];
+			for(int i=1;i<=cols;i++){
+				column[i-1]=rsmd.getColumnName(i);
+			}
+			
+			rs.last();
+			int rows=rs.getRow();
+			rs.beforeFirst();
+
+			data=new String[rows][cols];
+			int count=0;
+			while(rs.next()){
+				for(int i=1;i<=cols;i++){
+					data[count][i-1]=rs.getString(i);
+				}
+				count++;
+			}
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		
+		table = new JTable(data,column);
+		JScrollPane sp=new JScrollPane(table);
+		
+		contentPane.add(sp, BorderLayout.CENTER);
+	}
+
+}
+public class ViewIssuedBooks extends JFrame {
+
+	private JPanel contentPane;
+	private JTable table;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ViewIssuedBooks frame = new ViewIssuedBooks();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ViewIssuedBooks() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		String data[][]=null;
+		String column[]=null;
+		try{
+			Connection con=DB.getConnection();
+			PreparedStatement ps=con.prepareStatement("select * from issuebooks",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs=ps.executeQuery();
+			
+			ResultSetMetaData rsmd=rs.getMetaData();
+			int cols=rsmd.getColumnCount();
+			column=new String[cols];
+			for(int i=1;i<=cols;i++){
+				column[i-1]=rsmd.getColumnName(i);
+			}
+			
+			rs.last();
+			int rows=rs.getRow();
+			rs.beforeFirst();
+
+			data=new String[rows][cols];
+			int count=0;
+			while(rs.next()){
+				for(int i=1;i<=cols;i++){
+					data[count][i-1]=rs.getString(i);
+				}
+				count++;
+			}
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		
+		table = new JTable(data,column);
+		JScrollPane sp=new JScrollPane(table);
+		
+		contentPane.add(sp, BorderLayout.CENTER);
+	}
+}
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTable;
+
+public class ViewLibrarian extends JFrame {
+
+	private JPanel contentPane;
+	private JTable table;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ViewLibrarian frame = new ViewLibrarian();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ViewLibrarian() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		String data[][]=null;
+		String column[]=null;
+		try{
+			Connection con=DB.getConnection();
+			PreparedStatement ps=con.prepareStatement("select * from librarian",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs=ps.executeQuery();
+			
+			ResultSetMetaData rsmd=rs.getMetaData();
+			int cols=rsmd.getColumnCount();
+			column=new String[cols];
+			for(int i=1;i<=cols;i++){
+				column[i-1]=rsmd.getColumnName(i);
+			}
+			
+			rs.last();
+			int rows=rs.getRow();
+			rs.beforeFirst();
+
+			data=new String[rows][cols];
+			int count=0;
+			while(rs.next()){
+				for(int i=1;i<=cols;i++){
+					data[count][i-1]=rs.getString(i);
+				}
+				count++;
+			}
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		
+		table = new JTable(data,column);
+		JScrollPane sp=new JScrollPane(table);
+		
+		contentPane.add(sp, BorderLayout.CENTER);
+	}
+
+}
 
